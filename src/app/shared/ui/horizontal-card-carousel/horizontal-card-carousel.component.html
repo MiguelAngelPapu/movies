@@ -1,0 +1,49 @@
+<div class="horizontal-card-carousel">
+  <!-- Header: título + enlace -->
+  <div class="horizontal-card-carousel__header">
+    <h1
+      class="horizontal-card-carousel__title"
+      [class.horizontal-card-carousel__title--loading]="hasData()">
+      @if (!hasData()) {
+        {{ title() }}
+      }
+    </h1>
+
+    <a 
+      class="horizontal-card-carousel__link"
+      [class.horizontal-card-carousel__link--loading]="hasData()" 
+      [routerLink]="[router()]">
+       @if (!hasData()) {
+         Ver todo
+       }
+    </a>
+  </div>
+
+  <!-- Lista de cards -->
+  <div
+    class="horizontal-card-carousel__list"
+    dragScroll
+    infiniteScrollX
+    [loadThreshold]="98"
+    (nearEnd)="loading.emit()">
+
+    <!-- Placeholder inicial -->
+    @if (hasData()) {
+      <media-card class="horizontal-card-carousel__item" />
+      <media-card class="horizontal-card-carousel__item" />
+      <media-card class="horizontal-card-carousel__item" />
+    }
+
+    <!-- Data real -->
+    @for (item of data(); track $index) {
+      <media-card 
+        class="horizontal-card-carousel__item" 
+        [data]="item" />
+    }
+
+    <!-- Loader -->
+    @if (isLoadingSignal()) {
+      <media-card class="horizontal-card-carousel__item" />
+    }
+  </div>
+</div>

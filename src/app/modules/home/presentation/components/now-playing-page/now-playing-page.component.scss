@@ -1,0 +1,41 @@
+@use '../../../../../shared/styles/mixins' as *;
+
+/* Bloque principal de la página */
+.now-playing {
+  width: 100%;
+  margin: 0 auto;
+  /* Centra el contenedor */
+  /* (Móvil) Espaciado más pequeño por defecto */
+  padding: 2rem 1rem;
+
+
+  /* Elemento: Título */
+  &__title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #F9F9F9;
+
+    &--loading {
+      border-radius: 4px;
+      height: 37px;
+      width: 183px;
+      @include skeleton-loader();
+    }
+  }
+
+  /* Elemento: Cuadrícula de películas */
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(331px, 1fr));
+    row-gap: 1.5125rem;
+  }
+
+  @media (min-width: 1440px) {
+    max-width: 1440px;
+    /* Un ancho máximo para pantallas grandes */
+    padding: 2rem 3.1rem;
+    /* Espaciado interior */
+  }
+
+}

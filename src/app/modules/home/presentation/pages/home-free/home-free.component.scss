@@ -1,0 +1,36 @@
+.home-free {
+  display: flex;
+  flex-direction: column;
+
+  &__header {}
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+  }
+
+  &__section {
+    width: 100%;
+    max-width: 1440px; // 🔑 ancho máximo del contenido
+
+
+
+    &--now-playing {}
+
+    &--popular {}
+
+    &--upcoming {}
+
+
+  }
+
+  &__now-playing {}
+
+  &__popular {}
+
+  &__upcoming {}
+
+  &__footer {}
+}

@@ -1,0 +1,197 @@
+@use '../../styles/mixins' as *;
+
+/* ==============================================
+  Variables de Color
+============================================== */
+$color-background-dark: #0D0D0D;
+$color-outline: #1F1F1F;
+$color-accent: #E6B91E;
+$color-text-light: #F9F9F9;
+$color-text-primary: #D2D2D2;
+$color-text-secondary: #949494;
+$color-separator: #BB0000;
+$color-transparent: transparent;
+
+// Variables para el gradiente
+$gradient-color-1: rgba(255, 255, 255, 0.040);
+$gradient-color-2: rgba(217, 217, 217, 0.020);
+
+
+/* ==============================================
+  Bloque principal del componente 
+============================================== */
+.media-card {
+    width: 311px;
+    height: 469px;
+    background-image: linear-gradient($gradient-color-1, $gradient-color-2), url(/rectangle_13.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 16px;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    &--loading {
+        background-image: none;
+        background-color: $color-transparent;
+    }
+
+    /* Poster */
+    &__poster {
+        position: relative;
+        width: 279px;
+        height: 358px;
+        background: $color-background-dark;
+        outline: 2px solid $color-outline;
+        border-radius: 8px;
+       
+        &--loading {
+            outline-color: $color-transparent;
+             height: 358px;
+             border-radius: 8px;
+            @include skeleton-loader();
+        }
+        & img {
+            border: none;
+            outline: none;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        
+    }
+
+    /* Géneros */
+    &__genre-tag {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 4px 12px;
+        background-color: $color-background-dark;
+        color: $color-text-light;
+        outline: 2px solid $color-outline;
+        border-bottom-left-radius: 8px;
+        border-top-right-radius: 7px;
+        font-size: .8rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 95%;
+
+        ::ng-deep &--separator {
+            position: relative;
+
+            &::after {
+                content: '\00a0';
+                position: absolute;
+                inset: 0;
+                margin: auto;
+                background-color: $color-separator;
+                height: 2px;
+                width: 4px;
+                border-radius: 4px;
+            }
+        }
+
+        &--loading {
+            outline-color: $color-transparent;
+            width: 70px;
+            height: 23px;
+            @include skeleton-loader();
+        }
+    }
+
+    /* Detalles */
+    &__details {
+        display: flex;
+        flex-direction: column;
+        height: 67px;
+        gap: 6px;
+    }
+
+    /* Header */
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    /* Título */
+    &__title {
+        color: $color-text-primary;
+        font-size: .8rem;
+        font-weight: bold;
+        margin: 0;
+        width: 80%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        &--loading {
+            height: 15px;
+            border-radius: 4px;
+            @include skeleton-loader();
+        }
+    }
+
+    /* Rating */
+    &__rating {
+        width: 38px;
+        height: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $color-accent;
+        color: $color-background-dark;
+        font-size: .9rem;
+        font-weight: bold;
+        border-radius: 4px;
+
+        &--loading {
+            @include skeleton-loader();
+        }
+    }
+
+    /* Descripción */
+    &__description {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    /* Fecha */
+    &__release-date {
+        color: $color-text-secondary;
+        font-size: .7rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        &--loading {
+            height: 14px;
+            border-radius: 4px;
+            @include skeleton-loader();
+        }
+    }
+
+    /* Summary */
+    &__summary {
+        color: $color-text-secondary;
+        font-size: .7rem;
+        height: 26px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+
+        &--loading {
+            height: 28px;
+            border-radius: 4px;
+            @include skeleton-loader();
+        }
+    }
+}

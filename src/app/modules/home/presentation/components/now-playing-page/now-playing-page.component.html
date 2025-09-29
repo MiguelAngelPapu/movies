@@ -1,0 +1,22 @@
+<div class="now-playing">
+
+    <h1 class="now-playing__title" [class.now-playing__title--loading]="facade.loading$()">
+        @if (!facade.loading$()) {
+        {{title()}}
+        }
+    </h1>
+
+    <div class="now-playing__grid">
+        @if (facade.loading$()) {
+        <media-card />
+        <media-card />
+        <media-card />
+        <media-card />
+        }
+        @else {
+            @for (movie of facade.movies$(); track $index) {
+                <media-card [data]="movie" />
+            }
+        }
+    </div>
+</div>

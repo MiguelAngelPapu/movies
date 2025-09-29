@@ -1,0 +1,20 @@
+@mixin skeleton-loader() {
+    background: linear-gradient(90deg,
+            rgba(220, 220, 220, 0.040),
+            /* Color base, 10% opaco */
+            rgba(220, 220, 220, 0.100),
+            /* Brillo, 20% opaco */
+            rgba(220, 220, 220, 0.040));
+    background-size: 400%;
+    animation: shimmer 2.5s infinite alternate-reverse;
+
+    @keyframes shimmer {
+        0% {
+            background-position: 100% 100%;
+        }
+
+        100% {
+            background-position: 0 0;
+        }
+    }
+}

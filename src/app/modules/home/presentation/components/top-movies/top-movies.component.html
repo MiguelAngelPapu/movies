@@ -1,0 +1,8 @@
+<horizontal-card-carousel
+    [isLoadingSignal]="facade.loading$()"
+    [title]="title()"
+    [router]="router()"
+    [data]="facade.movies$()"
+    [hasData]="!facade.hasTopMovies"
+    (loading)="facade.loadNextPage()"
+/>

@@ -1,0 +1,52 @@
+<div class="media-card" 
+    [class.media-card--loading]="!data()">
+    <!-- Poster -->
+    <div class="media-card__poster" 
+        [class.media-card__poster--loading]="!data()?.posterUrl">
+
+        <span class="media-card__genre-tag" 
+              [class.media-card__genre-tag--loading]="!data()?.genres"
+              [innerHTML]="data()?.genres || [] | onlyNamesGenrePipe | safeHtml">
+        </span>
+
+        @if (data()?.posterUrl) {
+            <img [src]="data()?.posterUrl" alt="Poster de {{ data()?.title }}" draggable="false">
+        }
+    </div>
+
+    <!-- Detalles -->
+    <div class="media-card__details">
+
+        <!-- Encabezado -->
+        <div class="media-card__header">
+            <h6 class="media-card__title" [class.media-card__title--loading]="!data()?.title">
+                {{ data()?.title || '' }}
+            </h6>
+
+            <span class="media-card__rating" [class.media-card__rating--loading]="!data()?.rating">
+                {{ data()?.rating | truncateNumber }}
+            </span>
+        </div>
+
+        <!-- Descripción -->
+        <div class="media-card__description">
+            <span class="media-card__release-date" 
+                  [class.media-card__release-date--loading]="!data()?.releaseDate">
+
+                {{ data()?.releaseDate | date:'longDate' }}
+                
+                @if(isSerie(data()); as data){
+                    <span class="media-card__genre-tag--separator">&nbsp;</span> Temporada {{data.season}}
+                }
+                 
+                @if(isTopSerie(data()); as data){
+                    <span class="media-card__genre-tag--separator">&nbsp;</span> Temporada {{data.numberOfSeasons}}
+                }
+            </span>
+
+            <p class="media-card__summary" [class.media-card__summary--loading]="!data()?.overview">
+                {{ data()?.overview || '' }}
+            </p>
+        </div>
+    </div>
+</div>

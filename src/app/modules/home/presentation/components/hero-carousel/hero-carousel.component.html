@@ -1,0 +1,94 @@
+<div class="hero-carousel">
+    <!-- Botón previo -->
+    <button 
+        class="hero-carousel__control hero-carousel__control--prev"
+        [class.hero-carousel__control--loading]="facade.loading$()"
+        (click)="
+            facade.prevInternalPage();
+            thumbnailErrorLeft.set(false);
+            thumbnailErrorRight.set(false);
+            banner.emit(facade.currentInternalItems[0].bannerUrl);">
+
+        @if (!facade.loading$()) { <img src="./arrow-square-left.svg" alt="" srcset=""> }
+    </button>
+    <!-- Miniaturas laterales -->
+    <div 
+        class="hero-carousel__thumbnail hero-carousel__thumbnail--left"
+        [class.hero-carousel__thumbnail--loading]="facade.loading$() || thumbnailErrorLeft()"
+        >
+        @if (!facade.loading$() && !thumbnailErrorLeft()) {
+            <img 
+                [src]="facade.currentInternalItems[1].posterUrl" 
+                [alt]="facade.currentInternalItems[1].title" 
+                (error)="thumbnailErrorLeft.set(true)"
+                (load)="thumbnailErrorLeft.set(false)"
+                />
+        }
+        
+    </div>
+
+    <!-- Contenido central -->
+    <div class="hero-carousel__content">
+        <h2 
+            class="hero-carousel__title"
+            [class.hero-carousel__title--loading]="facade.loading$()">
+
+            @if (!facade.loading$()) { {{ facade.currentInternalItems[0].title }} }
+
+        </h2>
+    
+        <p 
+            class="hero-carousel__description"
+            [class.hero-carousel__description--loading]="facade.loading$() || !facade.currentInternalItems[0]?.overview">
+
+            @if (facade.loading$() || !facade.currentInternalItems[0]?.overview) {
+                <span class="hero-carousel__description hero-carousel__description--empty"></span>
+                <span class="hero-carousel__description hero-carousel__description--empty"></span>
+            } @else {
+                {{ facade.currentInternalItems[0].overview }}
+            }
+            
+        </p>
+
+        <div class="hero-carousel__actions">
+            <action-button 
+                class="hero-carousel__button hero-carousel__button--primary"
+                [text]="!facade.loading$() ? 'Ver ahora' : undefined"
+                [icon]="'./arrow-right.svg'"
+                />
+            <action-button 
+                class="hero-carousel__button hero-carousel__button--secondary"
+                [text]="!facade.loading$() ? 'Lista' : undefined"
+                [icon]="'./add.svg'"
+                [style]="'secondary'"
+                />
+        </div>
+    </div>
+
+    <div 
+        class="hero-carousel__thumbnail hero-carousel__thumbnail--right"
+        [class.hero-carousel__thumbnail--loading]="facade.loading$() || thumbnailErrorRight()">
+        @if (!facade.loading$() && !thumbnailErrorRight()) {
+            <img 
+                [src]="facade.currentInternalItems[2].posterUrl" 
+                [alt]="facade.currentInternalItems[2].title" 
+                (error)="thumbnailErrorRight.set(true)"
+                (load)="thumbnailErrorRight.set(false)"
+                />
+        }
+    </div>
+
+    <!-- Botón siguiente -->
+    <button 
+        class="hero-carousel__control hero-carousel__control--next"
+        [class.hero-carousel__control--loading]="facade.loading$()"
+        (click)="
+            facade.nextInternalPage();
+            thumbnailErrorLeft.set(false);
+            thumbnailErrorRight.set(false);
+            banner.emit(facade.currentInternalItems[0].bannerUrl);">
+            
+        @if (!facade.loading$()) { <img src="./arrow-square-right.svg" alt="" srcset=""> }
+    </button>
+
+</div>

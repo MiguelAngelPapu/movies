@@ -17,7 +17,7 @@ export class PopularMovieMapper {
       title: dto.title,
       overview: dto.overview,
       releaseDate: new Date(dto.release_date),
-      posterUrl: (dto.poster_path) ? `https://image.tmdb.org/t/p/w500${dto.poster_path}`: undefined,
+      posterUrl: (dto.poster_path) ? `https://image.tmdb.org/t/p/w342${dto.poster_path}`: undefined,
       rating: (dto.popularity) ? dto.popularity : undefined,
       genres: (movieGenres.length) ? movieGenres : undefined
     }

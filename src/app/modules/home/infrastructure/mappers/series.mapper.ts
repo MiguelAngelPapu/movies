@@ -13,7 +13,7 @@ export class SeriesMapper {
       title: dto.name,
       overview: dto.overview,
       releaseDate: new Date(dto.first_air_date),
-      posterUrl: (dto.poster_path) ? `https://image.tmdb.org/t/p/w500${dto.poster_path}` : undefined,
+      posterUrl: (dto.poster_path) ? `https://image.tmdb.org/t/p/w280${dto.poster_path}` : undefined,
       rating: (dto.vote_average) ? dto.vote_average : undefined,
       genres: (dto.genres.length) ? dto.genres : undefined,
       season: SeriesMapper.mapSeasons(seasons),
@@ -31,7 +31,7 @@ export class SeriesMapper {
       name: season.name,
       overview: season.overview,
       posterUrl: season.poster_path 
-        ? `https://image.tmdb.org/t/p/w500${season.poster_path}` 
+        ? `https://image.tmdb.org/t/p/w342${season.poster_path}` 
         : undefined,
       seasonNumber: season.season_number,
       rating: season.vote_average || undefined

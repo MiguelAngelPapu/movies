@@ -1,0 +1,56 @@
+@use '../../styles/mixins' as *;
+
+.action-buttons {
+   
+    &__button {
+        height: 52px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        border: none;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        font-weight: 500;
+        cursor: pointer;
+        padding: 0px 1.8rem;
+        transition: background-color .2s ease, transform .2s ease;
+
+
+        &--primary {
+            background-color: #e50914;
+            color: #fff;
+
+            &:hover {
+                background-color: #f6121d;
+                transform: scale(1.02);
+            }
+        }
+
+        &--secondary {
+            background-color: #1f1f1f;
+            color: #d2d2d2;
+
+            &:hover {
+                background-color: #333;
+                transform: scale(1.02);
+            }
+        }
+
+        &--loading{
+            @include skeleton-loader();
+        }
+    }
+
+    &__icon {
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__text {
+        white-space: nowrap;
+    }
+}

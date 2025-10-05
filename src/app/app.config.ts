@@ -13,6 +13,8 @@ import { GenreRepository } from './modules/home/domain/repositories/genre.reposi
 import { GenreHttpRepository } from './modules/home/infrastructure/repositories/genre-http.repository';
 import { SeriesRepository } from './modules/home/domain/repositories/series.repository';
 import { SeriesHttpRepository } from './modules/home/infrastructure/repositories/series-http.repository';
+import { TrendingRepository } from './modules/home/domain/repositories/trending.repository';
+import { TrendingHttpRepository } from './modules/home/infrastructure/repositories/trending-http.repository';
 
 // registra español globalmente
 registerLocaleData(localeEs);
@@ -25,6 +27,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(withFetch(), withInterceptors([tmdbApiInterceptor])),
     { provide: GenreRepository, useClass: GenreHttpRepository },
+    { provide: TrendingRepository, useClass: TrendingHttpRepository },
     { provide: MovieRepository, useClass: MovieHttpRepository },
     { provide: SeriesRepository, useClass: SeriesHttpRepository }
   ]

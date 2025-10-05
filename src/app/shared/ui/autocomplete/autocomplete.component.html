@@ -1,0 +1,33 @@
+<div class="search-autocomplete">
+  <input
+    class="search-autocomplete__input"
+    type="text"
+    [value]="query"
+    (input)="onInput($event)"
+    placeholder="Buscar..."
+    aria-label="Buscar"
+  />
+
+  @if (results.length > 0) {
+    <ul class="search-autocomplete__results" role="listbox">
+      @for (item of results; track item.title) {
+        <li
+          class="search-autocomplete__item"
+          role="option"
+          (click)="selectItem(item)"
+        >
+          <img
+            class="search-autocomplete__thumb"
+            [src]="item.image || placeholder"
+            [alt]="item.title"
+            (error)="onImageError($event)"
+          />
+          <span class="search-autocomplete__title">{{ item.title }}</span>
+           <span class="search-autocomplete-tag">
+              <span class="search-autocomplete-tag--separator">&nbsp;</span>
+           </span>
+        </li>
+      }
+    </ul>
+  }
+</div>

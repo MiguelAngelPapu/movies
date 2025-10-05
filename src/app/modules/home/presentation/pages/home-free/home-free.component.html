@@ -1,9 +1,48 @@
-<header class="home-free__header">
+<header class="home-free__header" >
+    
+  <!-- Banner anterior -->
+  <div 
+    class="home-free__header-banner"
+    [class.is-loaded]="activeBanner() === 0"
+    [style.background-image]="bannerUrls()[0] 
+      ? 'linear-gradient(to top, rgba(0,0,0,0.78) 60%, rgba(0,0,0,0.65) 100%), url(' + bannerUrls()[0] + ')' 
+      : 'none'">
+  </div>
 
+  <!-- Banner nuevo -->
+  <div 
+    class="home-free__header-banner"
+    [class.is-loaded]="activeBanner() === 1"
+    [style.background-image]="bannerUrls()[1] 
+      ? 'linear-gradient(to top, rgba(0,0,0,0.78) 60%, rgba(0,0,0,0.65) 100%), url(' + bannerUrls()[1] + ')' 
+      : 'none'">
+  </div>
+
+
+  <div class="home-free__header-top">
+    
+    <!-- Logo -->
+    <div class="home-free__logo">
+      <img src="./logo.svg" alt="Logo" class="home-free__logo-img">
+    </div>
+
+    <!-- Navegación -->
+    <tab-navigation class="home-free__nav" />
+    
+    <!-- Buscador -->
+    <autocomplete class="home-free__search" />
+    
+  </div>
+
+  <div class="home-free__header-bottom">
+    <hero-carousel 
+      (banner)="onBannerChange($event)"
+    />
+  </div>
 </header>
 
 <main class="home-free__main">
-  <section class="home-free__section home-free__section--now-playing">
+  <!-- <section class="home-free__section home-free__section--now-playing">
     <now-playing class="home-free__now-playing" />
   </section>
   <section class="home-free__section home-free__section--upcoming">
@@ -17,7 +56,7 @@
   </section>
   <section class="home-free__section home-free__section--top-series">
     <top-series class="home-free__top-series" />
-  </section>
+  </section> -->
 </main>
 
 <footer class="home-free__footer">

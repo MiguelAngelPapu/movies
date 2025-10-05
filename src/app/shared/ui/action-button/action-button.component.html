@@ -1,0 +1,13 @@
+<button 
+    class="action-buttons__button"
+    [class.action-buttons__button--primary]="style()=='primary'"
+    [class.action-buttons__button--secondary]="style()=='secondary'"
+    [class.action-buttons__button--loading]="!text()"> 
+    @if(text()){
+        <img class="action-buttons__icon" [src]="icon()" [alt]="'icono '+icon()">
+        <span class="action-buttons__text">
+            {{text()}}
+        </span> 
+    }
+    
+</button>

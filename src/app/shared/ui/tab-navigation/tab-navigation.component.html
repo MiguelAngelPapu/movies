@@ -1,0 +1,130 @@
+<nav 
+  class="tab-navigation"
+  [class.tab-navigation--loading]="!facade.hasGenres">
+  <ul class="tab-navigation__list">
+    <!-- Inicio -->
+    <li 
+      class="tab-navigation__item tab-navigation__item--active"
+      [class.tab-navigation__link--loading]="!facade.hasGenres">
+      <a href="#" class="tab-navigation__link">
+         @if (facade.hasGenres) {
+            Inicio
+          }
+        </a>
+    </li>
+
+    <!-- Submenú Géneros -->
+    <li 
+      class="tab-navigation__item tab-navigation__item--has-submenu"
+      (mouseenter)="isGenreOpen.set(true)" 
+      (mouseleave)="isGenreOpen.set(false)"
+    >
+      <a 
+        class="tab-navigation__link"
+        [class.tab-navigation__link--loading]="!facade.hasGenres"
+        (click)="isGenreOpen.set(!isGenreOpen())">
+          @if (facade.hasGenres) {
+            Géneros
+          }
+      </a>
+
+      <ul 
+        class="tab-navigation__submenu"
+        [class.tab-navigation__submenu--open]="isGenreOpen() && facade.hasGenres">
+
+        @for (genre of facade.genres$(); track $index) {
+          <li 
+            class="tab-navigation__submenu-item" 
+            [class.tab-navigation__submenu-item--active]="activeSubmenu() === 'action'">
+              <a href="#" 
+                class="tab-navigation__submenu-link" 
+                (click)="setActiveSubmenu('action')">{{genre.name}}</a>
+          </li>
+        }
+        
+       
+      </ul>
+    </li>
+
+    <!-- Otras secciones -->
+
+    <li 
+      class="tab-navigation__item tab-navigation__item--has-submenu"
+      (mouseenter)="isMoviesOpen.set(true)" 
+      (mouseleave)="isMoviesOpen.set(false)"
+    >
+      <a 
+        class="tab-navigation__link"
+        [class.tab-navigation__link--loading]="!facade.hasGenres"
+        (click)="isMoviesOpen.set(!isMoviesOpen())">
+        @if (facade.hasGenres) {
+          Películas
+        }
+      </a>
+
+      <ul 
+        class="tab-navigation__submenu"
+        [class.tab-navigation__submenu--open]="isMoviesOpen() && facade.hasGenres">
+          @for (movie of menuMovies(); track $index) {
+            <li 
+              class="tab-navigation__submenu-item" 
+              [class.tab-navigation__submenu-item--active]="activeSubmenu() === 'basic'"
+            >
+              <a href="#" 
+                class="tab-navigation__submenu-link" 
+                (click)="setActiveSubmenu('basic')">
+                  {{movie.name}}
+              </a>
+            </li>
+          }
+
+      </ul>
+    </li>
+
+    <li 
+      class="tab-navigation__item tab-navigation__item--has-submenu"
+      (mouseenter)="isTvOpen.set(true)" 
+      (mouseleave)="isTvOpen.set(false)"
+    >
+      <a 
+        class="tab-navigation__link"
+        [class.tab-navigation__link--loading]="!facade.hasGenres"
+        (click)="isTvOpen.set(!isTvOpen())">
+        @if (facade.hasGenres) {
+          Programas de televisión
+        }
+      </a>
+
+      <ul 
+        class="tab-navigation__submenu"
+        [class.tab-navigation__submenu--open]="isTvOpen() && facade.hasGenres">
+          @for (tv of menuSeries(); track $index) {
+            <li 
+              class="tab-navigation__submenu-item" 
+              [class.tab-navigation__submenu-item--active]="activeSubmenu() === 'basic'"
+            >
+              <a href="#" 
+                class="tab-navigation__submenu-link" 
+                (click)="setActiveSubmenu('basic')">
+                  {{tv.name}}
+              </a>
+            </li>
+          }
+           
+      </ul>
+    </li>
+
+
+
+    <li 
+      class="tab-navigation__item"
+      [class.tab-navigation__link--loading]="!facade.hasGenres">
+        <a href="#" class="tab-navigation__link">
+          @if (facade.hasGenres) {
+            Anime
+          }
+        </a>
+    </li>
+
+  </ul>
+</nav>

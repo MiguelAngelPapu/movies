@@ -1,0 +1,1 @@
+export type TrendingAllType = 'day' | 'week';
